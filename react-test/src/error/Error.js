@@ -2,7 +2,7 @@ import React from 'react';
 
 function Error (){
     return (
-            <div>error name is</div>
+            <div>404 error</div>
     );
 }
 
