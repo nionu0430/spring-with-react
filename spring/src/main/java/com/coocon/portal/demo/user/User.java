@@ -12,11 +12,13 @@ import javax.persistence.Table;
 @Table
 @Getter
 @NoArgsConstructor
-public class User {
+public class TestUser {
 
     @Id
-    private String id;
+    private String userId;
 
-    private String password;
-    private String name;
+
+    private String userPassword;
+    private String userName;
+
 }
