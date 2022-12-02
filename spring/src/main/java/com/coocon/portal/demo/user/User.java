@@ -1,24 +1,33 @@
 package com.coocon.portal.demo.user;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.sun.istack.NotNull;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name ="USERS")
 @Getter
+@Setter
 @NoArgsConstructor
-public class TestUser {
+public class User {
 
     @Id
-    private String userId;
+    @NotNull
+    private String id;
+    @NotNull
+    private String password;
+    @NotNull
+    private String name;
+    private int seq;
 
-
-    private String userPassword;
-    private String userName;
-
+    @Builder
+    User (String id, String password, String name ){
+        this.id = id;
+        this.password = password;
+        this.name = name;
+    }
 }
