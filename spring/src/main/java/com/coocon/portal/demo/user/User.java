@@ -4,24 +4,29 @@ package com.coocon.portal.demo.user;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name ="USERS")
+@Table(name ="USERS",
+        uniqueConstraints=
+    @UniqueConstraint(columnNames={"id"})
+)
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Id
     @NotNull
+
     private String id;
     @NotNull
     private String password;
     @NotNull
     private String name;
+
+    @GeneratedValue
     private int seq;
 
     @Builder
