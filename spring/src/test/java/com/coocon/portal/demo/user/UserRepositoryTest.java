@@ -40,6 +40,11 @@ class UserRepositoryTest {
     }
 
     @Test
+    public void select_invalid_user(){
+        assertFalse(userRepository.findById("test2").isPresent());
+    }
+
+    @Test
     public void update_user(){
         Optional<User> test = userRepository.findById("test");
 

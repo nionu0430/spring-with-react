@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
 
-@WebFilter(urlPatterns = {"/*"})
+@WebFilter
 @Slf4j
 public class LoggingFilter implements Filter {
 

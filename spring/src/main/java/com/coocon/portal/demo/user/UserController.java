@@ -1,15 +1,17 @@
 package com.coocon.portal.demo.user;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/user")
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/user")
 @Slf4j
 public class UserController {
 
@@ -20,14 +22,16 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> logIn(@RequestBody String id, @RequestBody String password){
-        log.debug("id= [{}], password = [{}]",id,password);
+    public ResponseEntity<UserDto> logIn(@RequestBody User user){
+        log.error("id= [{}], password = [{}]",user.getId(),user.getPassword());
 
         HttpHeaders headers = new HttpHeaders();
-        HttpStatus responseStatus = HttpStatus.OK;
-
-        UserDto userDto = userService.logIn(id, password);
-        if(userDto == null){
+        UserDto userDto = new UserDto();
+        if(userService.isValidUserLoginData(user.getId(), user.getPassword())){
+            userDto = userService.getUserDto(user.getId(), user.getPassword());
+        }
+        else {
+            log.error("failed to find user!");
             throw new NullPointerException("invalid login info");
         }
 
@@ -36,12 +40,18 @@ public class UserController {
 
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> handleNullPointerException(NullPointerException nullPointerException){
+        nullPointerException.printStackTrace();
+
+        Map<String, String> error = new HashMap<>();
+        error.put("code", "ERR5001");
+        error.put("message", "Required request body is missing");
+
+        log.debug("nullPointerException.message = {}",nullPointerException.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(nullPointerException.getMessage());
     }
 
     @PostMapping("/sign_in")
     public void signIn(@RequestBody User user){
         log.debug("User = {}",user);
-
     }
 }
