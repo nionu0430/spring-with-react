@@ -1,4 +1,4 @@
-package com.coocon.portal.demo.user;
+package com.coocon.portal.demo.member;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -8,12 +8,12 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class UserService {
+public class MemberService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     public List<User> getUsers(){
@@ -21,7 +21,7 @@ public class UserService {
     }
 
     public boolean isValidUserLoginData(String id, String password){
-        Optional<User> resultUser = userRepository.findById(id);
+        Optional<Member> resultUser = memberRepository.findById(id);
 
         if(resultUser.isEmpty()){
             log.error("user result is empty");
@@ -32,12 +32,12 @@ public class UserService {
         }
     }
 
-    public UserDto getUserDto(String id, String password){
-        UserDto userDto = new UserDto();
+    public MemberDto getUserDto(String id, String password){
+        MemberDto memberDto = new MemberDto();
 
-        Optional<User> user = userRepository.findById(id);
+        Optional<Member> user = memberRepository.findById(id);
         if(user.isPresent()){
-            return UserDto.createUserDtoFromUser(user.get());
+            return MemberDto.createUserDtoFromUser(user.get());
         }
         else{
             return null;
@@ -50,8 +50,8 @@ public class UserService {
 
     public void signIn(String id, String password, String name){
 
-        User user = User.builder().id(id).password(password).name(name).build();
-        userRepository.save(user);
+        Member member = Member.builder().id(id).password(password).name(name).build();
+        memberRepository.save(member);
         /*
         if(!userRepository.findById(id).isEmpty()){
             throw Duplicate
