@@ -1,7 +1,6 @@
-package com.coocon.portal.demo.user;
+package com.coocon.portal.demo.member;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,29 +12,29 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 @Slf4j
-public class UserController {
+public class MemberController {
 
-    private final UserService userService;
+    private final MemberService memberService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> logIn(@RequestBody User user){
-        log.error("id= [{}], password = [{}]",user.getId(),user.getPassword());
+    public ResponseEntity<MemberDto> logIn(@RequestBody Member member){
+        log.error("id= [{}], password = [{}]", member.getId(), member.getPassword());
 
         HttpHeaders headers = new HttpHeaders();
-        UserDto userDto = new UserDto();
-        if(userService.isValidUserLoginData(user.getId(), user.getPassword())){
-            userDto = userService.getUserDto(user.getId(), user.getPassword());
+        MemberDto memberDto = new MemberDto();
+        if(memberService.isValidUserLoginData(member.getId(), member.getPassword())){
+            memberDto = memberService.getUserDto(member.getId(), member.getPassword());
         }
         else {
             log.error("failed to find user!");
             throw new NullPointerException("invalid login info");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(userDto);
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(memberDto);
     }
 
     @ExceptionHandler(NullPointerException.class)
@@ -51,7 +50,7 @@ public class UserController {
     }
 
     @PostMapping("/sign_in")
-    public void signIn(@RequestBody User user){
-        log.debug("User = {}",user);
+    public void signIn(@RequestBody Member member){
+        log.debug("User = {}", member);
     }
 }

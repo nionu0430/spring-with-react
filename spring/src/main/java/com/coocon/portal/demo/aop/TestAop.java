@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class TestAop {
-    @Pointcut("execution(* com.coocon.portal.demo.user.*.*(..))")
+    @Pointcut("execution(* com.coocon.portal.demo.member.*.*(..))")
     private void loggin() {}
 
-    @Pointcut("execution(* com.coocon.portal.demo.user.UserController.*(*))")
+    @Pointcut("execution(* com.coocon.portal.demo.member.MemberController.*(*))")
     private void UserController() {}
 
     @Around("UserController()"  )
