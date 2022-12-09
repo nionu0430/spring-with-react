@@ -23,15 +23,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-
+	implementation 'com.auth0:java-jwt:3.18.1
+	compileOnly 'org.apache.commons:commons-lang3:3.12.0'
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testRuntimeOnly  'com.h2database:h2'
+
 	runtimeOnly 'org.postgresql:postgresql'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+	testRuntimeOnly  'com.h2database:h2'
 }
 
 tasks.named('test') {

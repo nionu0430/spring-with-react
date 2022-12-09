@@ -29,7 +29,13 @@ public class SpringSecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/auth/*").permitAll() //auth/* request에 대한 전체 허가
-                .anyRequest().authenticated(); //auth 제외 전체 인증 필요
+                .anyRequest().authenticated() //auth 제외 전체 인증 필요
+
+                .and()
+                .formLogin().loginPage("/auth/signIn")
+                .defaultSuccessUrl("/"); //로그인 성공 후 기본
+
+
 
                 //.and()
                 //.apply(new JwtSecurityConfig(tokenProvider));
