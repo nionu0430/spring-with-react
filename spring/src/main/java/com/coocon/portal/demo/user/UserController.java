@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,7 +17,6 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -37,6 +37,16 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(userDto);
     }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getUserData(){
+        HttpHeaders headers = new HttpHeaders();
+        UserDto userDto = new UserDto();
+
+
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(userService.getUsers());
+    }
+
 
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> handleNullPointerException(NullPointerException nullPointerException){
