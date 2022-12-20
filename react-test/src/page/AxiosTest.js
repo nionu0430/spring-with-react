@@ -1,6 +1,7 @@
+import axios from 'axios'
 import React from 'react'
 
-function Service (){
+function AxiosTest (){
     return (
         <div >
             <div>this is service</div>
@@ -8,4 +9,4 @@ function Service (){
     );
 }
 
-export default Service;
+export default AxiosTest;

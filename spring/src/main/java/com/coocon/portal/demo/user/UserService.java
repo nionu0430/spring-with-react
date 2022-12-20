@@ -3,6 +3,7 @@ package com.coocon.portal.demo.user;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +14,10 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public List<User> getUsers(){
+        return userRepository.findAll();
     }
 
     public boolean isValidUserLoginData(String id, String password){
