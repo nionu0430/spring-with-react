@@ -34,7 +34,6 @@ function Header (){
           <div className="navbar-start">
             <span className="navbar-item"><Link to="/">Main</Link></span>
             <span className="navbar-item"><Link to="/service">Service</Link></span>
-            <span className="navbar-item"><Link to="/test">Test</Link></span>
             <div className="navbar-item has-dropdown is-hoverable">
               <span className="navbar-link">DevSample</span>
               <div className="navbar-dropdown">
@@ -42,6 +41,7 @@ function Header (){
                 <span className="navbar-item"><Link to="/sample/prop-and-status-redux">PropsAndStatus-redux</Link></span>
                 <span className="navbar-item"><Link to="/sample/component">Component</Link></span>
                 <span className="navbar-item"><Link to="/sample/axios">Axios/connect to Spring</Link></span>
+                <span className="navbar-item"><Link to="/test">FormTest</Link></span>
                 <hr className="navbar-divider" />
                 <span className="navbar-item">Report an issue</span>
               </div>
@@ -51,9 +51,9 @@ function Header (){
             <div className="navbar-item">
               <div className="buttons">
                 <span className="button is-primary">
-                  <strong>Sign up</strong>
+                  <strong><Link to="/signUp">Sign up</Link></strong>
                 </span>
-                <span className="button is-light">Log in</span>
+                <span className="button is-light"><Link to="/logIn">Log in</Link></span>
               </div>
             </div>
           </div>
