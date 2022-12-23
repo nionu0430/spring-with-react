@@ -38,7 +38,7 @@ class UserControllerTest {
 
     @BeforeEach
     private void insert_basic_user() {
-        User user = User.builder().id("test").name("er").password("test1234").build();
+        User user = User.builder().id("userId").name("홍길동").password("password1!A").build();
         userRepository.save(user);
     }
     @Test
@@ -58,7 +58,7 @@ class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/user/users")
                 .accept(MediaType.ALL))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(document("members_get"));
+                .andDo(document("member_get_members"));
     }
     @Test
     public void login_fail_test() throws Exception {

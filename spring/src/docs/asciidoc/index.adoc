@@ -1,5 +1,5 @@
-= REST Docs 문서 만들기(제목)
-backtony.github.io(부제)
+= COOCON PROJECT API DOCS
+for spring-react sample project
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs // 문서에 표기되는 코드들의 하이라이팅을 highlightjs를 사용
@@ -7,5 +7,16 @@ backtony.github.io(부제)
 :toclevels: 2
 :sectlinks:
 
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+
 [[Member-API]]
 == Member API
+
+[[Member-get]]
+=== Member 가져오기
+include::{snippets}/members_get/http-request.adoc[]
+include::{snippets}/members_get/http-response.adoc[]
+
