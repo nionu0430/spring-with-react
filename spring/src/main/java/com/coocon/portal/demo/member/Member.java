@@ -1,14 +1,13 @@
-package com.coocon.portal.demo.user;
+package com.coocon.portal.demo.member;
 
 
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name ="USERS",
+@Table(name ="MEMBER",
         uniqueConstraints=
     @UniqueConstraint(columnNames={"id"})
 )
@@ -16,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString
-public class User {
+public class Member {
 
     @Id
     @NotNull
@@ -27,7 +26,7 @@ public class User {
     private String name;
 
     @Builder
-    User (String id, String password, String name ){
+    Member(String id, String password, String name ){
         this.id = id;
         this.password = password;
         this.name = name;
