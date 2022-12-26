@@ -1,10 +1,11 @@
 import './styles/App.css';
 import Header from './component/Header';
 import Footer from './component/Footer';
-
+import LogIn from './component/LogIn';
 import Main from './page/Main';
 import Service from './page/Service';
 import Test from './page/Test';
+
 import PropAndStatus from './page/PropAndStatus';
 
 import Error from './error/Error';
@@ -23,6 +24,7 @@ function App() {
           <Route path='/test/*' element={<Test/>}> </Route>
           <Route path='/sample/prop-and-status' element={<PropAndStatus/>}> </Route>
           <Route path='*' element={<Error/>}> </Route>
+          <Route path='/logIn' element={<LogIn/>}> </Route>
         </Routes>
         </div>
       </BrowserRouter>
