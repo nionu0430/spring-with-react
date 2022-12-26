@@ -8,12 +8,6 @@ import Test from './page/Test';
 
 import PropAndStatus from './page/PropAndStatus';
 
-import PropAndStatus from './page/PropAndStatus';
-
-import PropAndStatus from './page/PropAndStatus';
-
-import PropAndStatus from './page/PropAndStatus';
-
 import Error from './error/Error';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
