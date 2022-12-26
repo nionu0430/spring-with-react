@@ -16,28 +16,28 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public List<User> getUsers(){
-        return userRepository.findAll();
+    public List<Member> getMembers(){
+        return memberRepository.findAll();
     }
 
-    public boolean isValidUserLoginData(String id, String password){
-        Optional<Member> resultUser = memberRepository.findById(id);
+    public boolean isValidMemberLoginData(String id, String password){
+        Optional<Member> resultMember = memberRepository.findById(id);
 
-        if(resultUser.isEmpty()){
-            log.error("user result is empty");
+        if(resultMember.isEmpty()){
+            log.error("member result is empty");
             return false;
         }
         else{
-            return resultUser.get().checkPassword(password);
+            return resultMember.get().checkPassword(password);
         }
     }
 
-    public MemberDto getUserDto(String id, String password){
+    public MemberDto getMemberDto(String id, String password){
         MemberDto memberDto = new MemberDto();
 
-        Optional<Member> user = memberRepository.findById(id);
-        if(user.isPresent()){
-            return MemberDto.createUserDtoFromUser(user.get());
+        Optional<Member> member = memberRepository.findById(id);
+        if(member.isPresent()){
+            return MemberDto.createMemberDtoFromMember(member.get());
         }
         else{
             return null;
@@ -53,7 +53,7 @@ public class MemberService {
         Member member = Member.builder().id(id).password(password).name(name).build();
         memberRepository.save(member);
         /*
-        if(!userRepository.findById(id).isEmpty()){
+        if(!memberRepository.findById(id).isEmpty()){
             throw Duplicate
         }
         */

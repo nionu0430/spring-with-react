@@ -5,10 +5,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 public class SpringSecurityConfig {
+
+    private static final String[] AUTH_WHITELIST ={
+            "/static/*"
+    };
+
+    @Bean
+    public BCryptPasswordEncoder encodePassword(){
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -30,6 +40,9 @@ public class SpringSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/auth/*").permitAll() //auth/* request에 대한 전체 허가
                 .anyRequest().authenticated() //auth 제외 전체 인증 필요
+
+                //.and()
+                //.antMatcher("/admin/*")
 
                 .and()
                 .formLogin().loginPage("/auth/signIn")

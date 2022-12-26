@@ -1,5 +1,8 @@
-package com.coocon.portal.demo.user;
+package com.coocon.portal.demo.member;
 
+import com.coocon.portal.demo.member.Member;
+import com.coocon.portal.demo.member.MemberDto;
+import com.coocon.portal.demo.member.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.http.HttpHeaders;
@@ -12,39 +15,39 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/member")
 @Slf4j
-public class UserController {
+public class MemberController {
 
-    private final UserService userService;
-    public UserController(UserService userService) {
-        this.userService = userService;
+    private final MemberService memberService;
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> logIn(@RequestBody User user){
-        log.error("id= [{}], password = [{}]",user.getId(),user.getPassword());
+    public ResponseEntity<MemberDto> logIn(@RequestBody Member member){
+        log.error("id= [{}], password = [{}]",member.getId(),member.getPassword());
 
         HttpHeaders headers = new HttpHeaders();
-        UserDto userDto = new UserDto();
-        if(userService.isValidUserLoginData(user.getId(), user.getPassword())){
-            userDto = userService.getUserDto(user.getId(), user.getPassword());
+        MemberDto memberDto = new MemberDto();
+        if(memberService.isValidMemberLoginData(member.getId(), member.getPassword())){
+            memberDto = memberService.getMemberDto(member.getId(), member.getPassword());
         }
         else {
-            log.error("failed to find user!");
+            log.error("failed to find member!");
             throw new NullPointerException("invalid login info");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(userDto);
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(memberDto);
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUserData(){
+    @GetMapping("/members")
+    public ResponseEntity<List<Member>> getMemberData(){
         HttpHeaders headers = new HttpHeaders();
-        UserDto userDto = new UserDto();
+        MemberDto memberDto = new MemberDto();
 
 
-        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(userService.getUsers());
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(memberService.getMembers());
     }
 
 
@@ -61,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/sign_in")
-    public void signIn(@RequestBody User user){
-        log.debug("User = {}",user);
+    public void signIn(@RequestBody Member member){
+        log.debug("Member = {}",member);
     }
 }

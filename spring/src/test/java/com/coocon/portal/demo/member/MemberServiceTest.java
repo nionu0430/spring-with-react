@@ -26,7 +26,7 @@ class MemberServiceTest {
         doReturn(Optional.of(member)).when(memberRepository).findById("test");
 
         //then
-        assertTrue(memberService.isValidUserLoginData("test","test1234!"));
+        assertTrue(memberService.isValidMemberLoginData("test","test1234!"));
     }
 
     @Test
@@ -34,7 +34,7 @@ class MemberServiceTest {
         //given //when
         doReturn(Optional.empty()).when(memberRepository).findById("test");
         //then
-        assertFalse(memberService.isValidUserLoginData("test","test1234!"));
+        assertFalse(memberService.isValidMemberLoginData("test","test1234!"));
     }
 
     @Test
@@ -43,7 +43,7 @@ class MemberServiceTest {
         Member member = Member.builder().name("테스터").id("test").password("test4321!").build();
         doReturn(Optional.of(member)).when(memberRepository).findById("test");
         //then
-        assertFalse(memberService.isValidUserLoginData("test","test1234!"));
+        assertFalse(memberService.isValidMemberLoginData("test","test1234!"));
     }
 
     @Test
@@ -53,7 +53,7 @@ class MemberServiceTest {
         doReturn(Optional.of(member)).when(memberRepository).findById("test");
 
         //then
-        assertFalse(memberService.isValidUserLoginData("test","test1234!"));
+        assertFalse(memberService.isValidMemberLoginData("test","test1234!"));
     }
 
     @Test
@@ -61,6 +61,6 @@ class MemberServiceTest {
         //given //when
         doReturn(Optional.empty()).when(memberRepository).findById("test");
         //then
-        assertFalse(memberService.isValidUserLoginData("test","test1234!"));
+        assertFalse(memberService.isValidMemberLoginData("test","test1234!"));
     }
 }

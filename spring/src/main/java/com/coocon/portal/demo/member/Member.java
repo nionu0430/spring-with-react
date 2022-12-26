@@ -1,6 +1,7 @@
 package com.coocon.portal.demo.member;
 
 
+import com.coocon.portal.demo.authority.Authority;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -24,12 +25,17 @@ public class Member {
     private String password;
     @NotNull
     private String name;
+    @Enumerated
+    private Authority authority;
+
+
 
     @Builder
-    Member(String id, String password, String name ){
+    Member(String id, String password, String name, Authority authority ){
         this.id = id;
         this.password = password;
         this.name = name;
+        this.authority = authority;
     }
 
     public boolean checkPassword(String password){
