@@ -51,9 +51,9 @@ function Header (){
             <div className="navbar-item">
               <div className="buttons">
                 <span className="button is-primary">
-                  <strong>Sign up</strong>
+                  <strong><Link to="/signUp">Sign up</Link></strong>
                 </span>
-                <span className="button is-light">Log in</span>
+                <span className="button is-light"><Link to="/logIn">Log in</Link></span>
               </div>
             </div>
           </div>
